@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <Header></Header>
+    <router-view></router-view>
+    <!-- <Footer></Footer> -->
   </div>
 </template>
+
+<script>
+//引入
+import Header from './components/Header'
+export default{
+  name: '',
+  components:{
+    Header
+  }
+}
+</script>
 
 <style>
 #app {
