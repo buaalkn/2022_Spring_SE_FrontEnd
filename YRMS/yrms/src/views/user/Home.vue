@@ -11,7 +11,7 @@ export default {};
 
 <style>
 .t1 {
-  left: 67px;
+  left: 66px;
   top: 248px;
   width: 660px;
   height: 120px;
