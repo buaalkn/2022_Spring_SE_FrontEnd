@@ -1,0 +1,16 @@
+{
+  "id": "3408815",
+  "name": "yrms",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "28679977",
+      "name": "查找",
+      "font_class": "chazhao",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    }
+  ]
+}
