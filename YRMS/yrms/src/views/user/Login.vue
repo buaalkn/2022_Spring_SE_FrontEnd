@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div id="loginModel" ,class="login_layer" style="display: block">
+    <div id="loginModel" class="login_layer" style="display: block">
       <div class="login_bg"></div>
       <div class="login_panel">
         <div class="login_panel_close">x</div>

@@ -32,7 +32,15 @@ export default {
         {
           title:"订单",
           path:"/order"
-        }
+        },
+        {
+          title:"登录",
+          path:"/login"
+        },
+        {
+          title:"注册",
+          path:"/register"
+        },
       ],
       activeIndex:"1",
     }

@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div id="registerModel" ,class="register_layer" style="display: block">
+    <div id="registerModel" class="register_layer" style="display: block">
       <div class="register_bg"></div>
       <div class="register_panel">
         <div class="register_panel_close">x</div>
