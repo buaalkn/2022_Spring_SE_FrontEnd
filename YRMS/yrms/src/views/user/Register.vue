@@ -8,7 +8,7 @@
           <div class="register_panel_lable">
             <h2 class="register_panel_title">新用户注册</h2>
             <div class="register_panel_hint">
-              <div style="float: right; position: relative; top: -34px">
+              <div style="float: right; position: relative; top: 22px">
                 已有账号？
                 <a href="#">去登录</a>
               </div>
@@ -23,6 +23,7 @@
                   placeholder="请输入手机号"
                   type="text"
                   autocomplete="username"
+                  style="font-size: 15px"
                 />
               </li>
               <li class="form_input_item" style>
@@ -31,6 +32,7 @@
                   placeholder="请输入密码"
                   type="password"
                   autocomplete="current-password"
+                  style="font-size: 25px"
                 />
                 <em class="password-view"></em>
               </li>
@@ -40,6 +42,7 @@
                   placeholder="请再次输入密码"
                   type="password"
                   autocomplete="current-password"
+                  style="font-size: 25px"
                 />
                 <em class="password-view"></em>
               </li>
@@ -76,6 +79,10 @@ export default {
 
 <style scoped>
 /* ***************************** 标签样式 ***************************** */
+input::-webkit-input-placeholder {
+  color: #aab2bd;
+  font-size: 15px;
+}
 
 body {
   font-size: 14px;
@@ -92,12 +99,13 @@ body {
 
 h2 {
   display: block;
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-block-start: 0.83em;
   margin-block-end: 0.83em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+  float: left;
 }
 
 a {
@@ -157,22 +165,7 @@ ul {
   position: relative;
   margin-top: -1px;
 }
-/* 7天免登录 */
 
-.register_remember {
-  color: #555;
-  clear: both;
-  position: relative;
-  line-height: 23px;
-  margin: 24px 0;
-  overflow: hidden;
-}
-/* 忘记密码 */
-
-.register_panel_forget_password {
-  float: right;
-  color: #101d37;
-}
 /* 输入框 */
 
 input {
@@ -226,24 +219,18 @@ input {
   margin-top: 24px;
   background-color: #3072f6;
 }
-/* 更换登录方式 */
 
-.register_change_type {
-  padding: 24px 0 0;
-  height: 14px;
-  line-height: 14px;
-  color: noset;
-  display: inline-block;
-}
 /* 勾选同意服务协议 */
 
 .checkbox_protocol {
+  
   color: #555;
   clear: both;
   position: relative;
   line-height: 23px;
   margin: 24px 0;
   overflow: hidden;
+  
 }
 /* 勾选按钮 */
 
