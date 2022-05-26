@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import user from './user';
+import rental from './rental';
 export default new Vuex.Store({
   state: {
   },
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   },
   modules: {
     user,
+    rental,
   }
 })
 //state:仓库存储数据的地方

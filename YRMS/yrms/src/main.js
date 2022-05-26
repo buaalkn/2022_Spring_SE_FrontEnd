@@ -12,6 +12,9 @@ Vue.config.productionTip = false
 //测试apifox
 // import {reqGetCode} from '@/api';
 // reqGetCode('15138833006');
+//测试获取租房列表
+// import {reqGetRentalInfo} from '@/api';
+// console.log(reqGetRentalInfo({}));
 new Vue({
   router,
   store,
