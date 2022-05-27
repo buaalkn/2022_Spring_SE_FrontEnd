@@ -44,12 +44,12 @@
                 <span class="checkbox"> 7天内免登录</span>
               </div>
               <div class="login_panel_forget_password">
-                <a class="forget_password" href="#">忘记密码</a>
+                <router-link to="/loginvf" class="forget_password">忘记密码</router-link>
               </div>
             
             <div class="login_btn">登录</div>
-            <div>
-              <a class="login_change_type" href="#">邮箱快捷登录</a>
+            <div class="login_change_type">
+              <router-link to="/loginvf">短信验证码登录</router-link>
             </div>
             <div>
               <p

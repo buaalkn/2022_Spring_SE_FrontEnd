@@ -1,22 +1,16 @@
 <template>
   <body>
-    <div id="registerModel" class="register_layer" style="display: block">
-      <div class="register_bg"></div>
-      <div class="register_panel">
-        <div class="register_panel_close">x</div>
-        <div class="register_box">
-          <div class="register_panel_lable">
-            <h2 class="register_panel_title">新用户注册</h2>
-            <div class="register_panel_hint">
-              <div style="float: right; position: relative; top: 22px">
-                已有账号？
-                <router-link to="/login">去登录</router-link>
-              </div>
-            </div>
+    <div id="loginModel" class="login_layer" style="display: block">
+      <div class="login_bg"></div>
+      <div class="login_panel">
+        <div class="login_panel_close">x</div>
+        <div class="login_box">
+          <div class="login_panel_lable">
+            <h2 class="login_panel_title">验证码登录</h2>
           </div>
-          <form class="form">
-            <ul class="input_box">
-              <li class="form_input_item" style>
+          <div class="form">
+            <div class="input_box">
+              <div class="form_input_item">
                 <input
                   class="phonenum_input"
                   maxlength="11"
@@ -25,46 +19,56 @@
                   autocomplete="username"
                   style="font-size: 15px"
                 />
-              </li>
-              <li class="form_input_item" style>
+              </div>
+              <div class="form_input_item">
                 <input
-                  class="password_type"
-                  placeholder="请输入密码"
-                  type="password"
-                  autocomplete="current-password"
-                  style="font-size: 25px"
+                  class="verifycode_type"
+                  placeholder="请输入短信验证码"
+                  type="text"
+                  autocomplete="off"
+                  style="float:left"
                 />
-                <em class="password-view"></em>
-              </li>
-              <li class="form_input_item" style>
-                <input
-                  class="password_type"
-                  placeholder="请再次输入密码"
-                  type="password"
-                  autocomplete="current-password"
-                  style="font-size: 25px"
-                />
-                <em class="password-view"></em>
-              </li>
-            </ul>
-            <div class="checkbox_protocol">
-              <lable class="checkbox-btn">
-                <input
-                  type="checkbox"
-                  name="protocol"
-                  data-defval="0"
-                  data-require="1"
-                  unchecked
-                  value="0"
-                  style="cursor: pointer"
-                />
-                <span class="checkbox"></span> 我已阅读并同意
+              </div>
+            </div>
+
+            <div class="login_remember">
+              <input
+                type="checkbox"
+                name="remember"
+                data-defval="1"
+                class="mind-login remeber-input"
+                checked
+                value="1"
+                style="cursor: pointer"
+              />
+              <span class="checkbox"> 7天内免登录</span>
+            </div>
+            <div class="login_panel_forget_password">
+              <a class="forget_password" href="#">获取验证码</a>
+            </div>
+             <!-- <div class="send_login_message_verify">
+                <em>获取验证码</em>
+              </div> -->
+
+            <div class="login_btn">登录</div>
+            <div class="login_change_type">
+              <router-link to="/login">账号密码登录</router-link>
+            </div>
+            <div>
+              <p
+                style="
+                  color: #aaa;
+                  margin-top: 60px;
+                  font-size: 12px;
+                  line-height: 14px;
+                "
+              >
+                登录即代表同意
                 <a class="link-btn" href="#">《YRMS隐私政策》</a> 及
                 <a class="link-btn" href="#">《YRMS用户服务协议》</a>
-              </lable>
+              </p>
             </div>
-            <div class="register_btn">注册</div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -73,7 +77,7 @@
 
 <script>
 export default {
-  name: "Register",
+  name: "Login",
 };
 </script>
 
@@ -126,10 +130,23 @@ li {
 ul {
   list-style-type: disc;
 }
+
+em {
+    padding: 0 16px;
+    border-left: 1px solid #DBDBDB;
+    font-style: normal;
+    font-weight: 400;
+    float:right;
+    color:#555;
+    cursor: pointer;
+}
+em:hover {
+  color:#3072f6;
+}
 /* ***************************** 类样式 ***************************** */
 /* 整体窗口 */
 
-.register_panel {
+.login_panel {
   opacity: 1;
   filter: alpha(opacity=100);
   width: 300px;
@@ -145,7 +162,7 @@ ul {
 }
 /* 关闭按钮 */
 
-.register_panel_close {
+.login_panel_close {
   cursor: pointer;
   position: absolute;
   right: 15px;
@@ -166,6 +183,32 @@ ul {
   margin-top: -1px;
 }
 
+/* 获取验证码 */
+.send_login_message_verify {
+    line-height: 50px;
+    color: #101D37;
+    /* float: right; */
+}
+/* 7天免登录 */
+
+.login_remember {
+  color: #555;
+  clear: both;
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  margin: 24px 0;
+  overflow: hidden;
+  float: left;
+}
+/* 忘记密码 */
+
+.login_panel_forget_password {
+  /* display: block; */
+  margin: 24px 0;
+  float: right;
+  color: #101d37;
+}
 /* 输入框 */
 
 input {
@@ -203,7 +246,7 @@ input {
 }
 /* 登录按钮 */
 
-.register_btn {
+.login_btn {
   display: block;
   width: 300px;
   height: 50px;
@@ -216,26 +259,18 @@ input {
   color: #fff;
   text-align: center;
   border-radius: 2px;
-  margin-top: 24px;
+  margin-top: 68px;
   background-color: #3072f6;
 }
+/* 更换登录方式 */
 
-/* 勾选同意服务协议 */
-
-.checkbox_protocol {
-  
-  color: #555;
-  clear: both;
-  position: relative;
-  line-height: 23px;
-  margin: 24px 0;
-  overflow: hidden;
-  
-}
-/* 勾选按钮 */
-
-.checkbox-btn {
-  cursor: pointer;
+.login_change_type {
+  display: block;
+  padding: 24px 0 0;
+  height: 14px;
+  line-height: 14px;
+  color: noset;
+  display: block;
   float: left;
 }
 </style>
