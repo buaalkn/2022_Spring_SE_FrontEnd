@@ -1,0 +1,14 @@
+.head{
+    background-color: grey;
+    font-size: 25px;
+    width: 100%;
+}
+.head_1{
+    float: right;
+    background-color: grey;
+    text-align: right;
+}
+/* .h1{
+    /* height: 100px;
+    line-height: 100px; */
+    
