@@ -5,9 +5,11 @@ import HomeView from '../views/user/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [{
-        path: '/',
+        path: '/home',
         name: 'home',
-        component: HomeView
+        component: HomeView,
+        //     component: () =>
+        //         import ( /* webpackChunkName: "about" */ '../views/user/Home.vue')
     },
     {
         path: '/about',
@@ -28,19 +30,19 @@ const routes = [{
         path: '/login',
         name: 'login',
         component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/user/Login.vue')
+            import ( /* webpackChunkName: "about" */ '../views/user/Login/Login.vue')
     },
     {
         path: '/loginvf',
         name: 'loginvf',
         component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/user/LoginWithVfCode.vue')
+            import ( /* webpackChunkName: "about" */ '../views/user/Login/LoginWithVfCode.vue')
     },
     {
         path: '/register',
         name: 'register',
         component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/user/Register.vue')
+            import ( /* webpackChunkName: "about" */ '../views/user/Register/Register.vue')
     },
     {
         path: '/rental',

@@ -24,6 +24,18 @@
                   type="text"
                   autocomplete="username"
                   style="font-size: 15px"
+                  v-model="phone"
+                />
+              </li>
+              <li class="form_input_item" style>
+                <input
+                  class="code_input"
+                  maxlength="11"
+                  placeholder="请输入验证码"
+                  type="text"
+                  autocomplete="off"
+                  style="font-size: 15px"
+                  v-model="code"
                 />
               </li>
               <li class="form_input_item" style>
@@ -33,6 +45,7 @@
                   type="password"
                   autocomplete="current-password"
                   style="font-size: 25px"
+                  v-model="password"
                 />
                 <em class="password-view"></em>
               </li>
@@ -43,12 +56,18 @@
                   type="password"
                   autocomplete="current-password"
                   style="font-size: 25px"
+                  v-model="password1"
                 />
                 <em class="password-view"></em>
               </li>
             </ul>
+            <div class="login_panel_forget_password">
+              <a class="forget_password" href="#" @click="getCode">
+                获取验证码
+              </a>
+            </div>
             <div class="checkbox_protocol">
-              <lable class="checkbox-btn">
+              <div class="checkbox-btn">
                 <input
                   type="checkbox"
                   name="protocol"
@@ -57,13 +76,14 @@
                   unchecked
                   value="0"
                   style="cursor: pointer"
+                  :checked="agree"
                 />
                 <span class="checkbox"></span> 我已阅读并同意
                 <a class="link-btn" href="#">《YRMS隐私政策》</a> 及
                 <a class="link-btn" href="#">《YRMS用户服务协议》</a>
-              </lable>
+              </div>
             </div>
-            <div class="register_btn">注册</div>
+            <div class="register_btn" @click="userRegister">注册</div>
           </form>
         </div>
       </div>
@@ -74,6 +94,51 @@
 <script>
 export default {
   name: "Register",
+  data() {
+    return {
+      //收集表单数据 手机号
+      phone: "",
+      //验证码
+      code: "",
+      //密码
+      password: "",
+      //确认密码
+      password1: "",
+      //是否同意协议
+      agree: true,
+    };
+  },
+  methods: {
+    //获取验证码
+    async getCode() {
+      //验证有手机号存在的情况下
+      try {
+        //如果获取到验证码
+        const { phone } = this;
+        phone && (await this.$store.dispatch("getCode", phone));
+        //将组件的code属性值变为仓库的验证码[自动填写]
+        this.code = this.$store.state.user.code;
+      } catch (error) {}
+    },
+    //用户注册
+    async userRegister() {
+      try {
+        //如果成功 路由跳转到登录
+        const { phone, code, password, password1 } = this;
+        phone &&
+          code &&
+          password == password1 &&
+          (await this.$store.dispatch("userRegister", {
+            phone,
+            code,
+            password,
+          }));
+        this.$router.push('login');
+      } catch (error) {
+        alert(error.message);
+      }
+    },
+  },
 };
 </script>
 
@@ -220,17 +285,23 @@ input {
   background-color: #3072f6;
 }
 
+/* 获取验证码 */
+.login_panel_forget_password {
+  /* display: block; */
+  margin: 24px 0;
+  float: right;
+  color: #101d37;
+}
+
 /* 勾选同意服务协议 */
 
 .checkbox_protocol {
-  
   color: #555;
   clear: both;
   position: relative;
   line-height: 23px;
   margin: 24px 0;
   overflow: hidden;
-  
 }
 /* 勾选按钮 */
 
