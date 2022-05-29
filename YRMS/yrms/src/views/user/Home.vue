@@ -11,6 +11,7 @@
           placeholder="请输入地区、类型和方式开始找房"
           class="container__input"
           v-model="searchText"
+          @keyup.enter="goSearch"
         />
         <!-- 搜索按钮 + 图标（引入iconfont） -->
         <button class="search" type="submit" @click="goSearch">
@@ -20,16 +21,16 @@
     </div>
     <!-- 首页中间的文字信息 -->
     <div class="midbody">
-          <div class="midfont1">品质租房</div>
-          <span class="midfont2">高品质租房体验，从青租开始</span>
-          <span class="midfont3">更多北京租房</span>
+      <div class="midfont1">品质租房</div>
+      <span class="midfont2">高品质租房体验，从青租开始</span>
+      <span class="midfont3">更多北京租房</span>
     </div>
     <!-- 首页下方的房子样例 -->
     <div class="cards">
-      <div class="cards__item"><img src="~@/assets/images/home1.jpeg"></div>
-      <div class="cards__item"><img src="~@/assets/images/home2.jpeg"></div>
-      <div class="cards__item"><img src="~@/assets/images/home3.png"></div>
-      <div class="cards__item"><img src="~@/assets/images/home4.jpeg"></div>
+      <div class="cards__item"><img src="~@/assets/images/home1.jpeg" /></div>
+      <div class="cards__item"><img src="~@/assets/images/home2.jpeg" /></div>
+      <div class="cards__item"><img src="~@/assets/images/home3.png" /></div>
+      <div class="cards__item"><img src="~@/assets/images/home4.jpeg" /></div>
     </div>
     <!-- 测试接口 -->
     <!-- <div>
@@ -40,37 +41,40 @@
 </template>
 
 <script>
-const axios = require('axios');
+const axios = require("axios");
 export default {
   data() {
     return {
       searchText: "",
-      // publicPath: process.env.BASE_URL,
+      publicPath: process.env.BASE_URL,
       // 试下Apifox
-      // id:"1",
-      // test:{
-      //   kind: "",
-      //   name: "",
-      //   number: "",
-      //   price:100,
-      //   time:"20020510",
-      //   img: require(`../../assets/images/home1.jpeg`)
-      // }
+      id: "1",
+      test: {
+        kind: "",
+        name: "",
+        number: "",
+        price: 100,
+        time: "20020510",
+        img: require(`../../assets/images/home1.jpeg`),
+      },
     };
   },
   methods: {
-    goSearch(){
-      this.$router.push({name:"rental",query:{content:this.searchText}});
-    }
+    goSearch() {
+      this.$router.push({
+        name: "rental",
+        params: { keyword: this.searchText },
+      });
+    },
   },
-  created(){
+  created() {
     // const _this = this
     // axios.get("http://127.0.0.1:4523/mock/1005801/test/1").then(function (resp){
     //   console.log(_this.test)
     //   _this.test = resp.data
     //   console.log(_this.test)
     // })
-  }
+  },
 };
 </script>
 
@@ -134,29 +138,28 @@ export default {
 }
 
 ::-webkit-input-placeholder {
-  color: rgba(51, 50, 50, 0.3);
-  font-size: 20px;
-  /* font-style: 宋体; */
+  color: rgba(34, 33, 33, 0.3);
+  /* font-size: 20px; */
 }
 
-.midbody{
+.midbody {
   width: 1420px;
   height: 200px;
   margin: auto;
 }
-.midfont1{
+.midfont1 {
   text-align: left;
   font-size: 40px;
   font-weight: 600;
   padding-top: 100px;
 }
-.midfont2{
+.midfont2 {
   float: left;
   font-size: 18px;
   font-weight: 200;
   color: rgb(182, 176, 176);
 }
-.midfont3{
+.midfont3 {
   float: right;
   font-size: 20px;
   font-weight: 600;
