@@ -27,7 +27,7 @@ export default {
       nav_menu_data:[
         {
           title:"首页",
-          path:"/"
+          path:"/home"
         },
         {
           title:"订单",
