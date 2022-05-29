@@ -6,6 +6,7 @@ Vue.use(Vuex)
 import user from './user';
 import rental from './rental';
 import rentalDetail from './rentalDetail';
+import home from './home';
 export default new Vuex.Store({
   state: {
   },
@@ -18,9 +19,10 @@ export default new Vuex.Store({
   modules: {
     user,
     rental,
-    rentalDetail
+    rentalDetail,
+    home,
   }
-})
+});
 //state:仓库存储数据的地方
 //mutations:修改state的唯一手段
 //action:处理action，可以书写自己的业务逻辑，也可以处理异步

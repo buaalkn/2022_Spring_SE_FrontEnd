@@ -1,6 +1,6 @@
 import { reqGetRentalInfo } from "@/api";
 const state = {
-    rentalList:{}
+    rentalList:{},
 };
 const mutations = {
     GETRENTALLIST(state,rentalList){
@@ -16,13 +16,13 @@ const actions = {
             commit("GETRENTALLIST",result.data);
         }
     }
-}
+};
 //项目当中getters的主要的作用是：简化仓库中的数据
     //可以把我们将来在组件中需要的数据简化
 const getters = {
     //租房列表
     rentalList(state){
-       return state.rentalList.rentallist||[];
+       return state.rentalList.rentallist;
     },
     //租房数量
     rentalNum(state){
@@ -34,4 +34,4 @@ export default{
     mutations,
     actions,
     getters
-}
+};

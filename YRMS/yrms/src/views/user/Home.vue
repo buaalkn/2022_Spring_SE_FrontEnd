@@ -23,14 +23,35 @@
     <div class="midbody">
       <div class="midfont1">品质租房</div>
       <span class="midfont2">高品质租房体验，从青租开始</span>
-      <span class="midfont3">更多北京租房</span>
+      <router-link class="midfont3" to="/rental"> 更多北京租房 </router-link>
     </div>
     <!-- 首页下方的房子样例 -->
     <div class="cards">
-      <div class="cards__item"><img src="~@/assets/images/home1.jpeg" /></div>
+      <div
+        class="cards__item"
+        v-for="(rental, index) in recommend"
+        :key="index"
+      >
+        <!-- 图片 -->
+        <img :src="rental.img" />
+        <!-- 信息 -->
+        <div id="cards_title">
+          <span>{{ rental.rentalType }}租·</span>
+          <span>{{ rental.name }} </span>
+
+          <span>{{ rental.num }}人间</span>
+        </div>
+        <div id="cards_info">
+          {{ rental.location }}
+        </div>
+        <div>
+          <span id="cards_price">{{ rental.price }}元/月</span>
+        </div>
+      </div>
+      <!-- <div class="cards__item"><img src="~@/assets/images/home1.jpeg" /></div>
       <div class="cards__item"><img src="~@/assets/images/home2.jpeg" /></div>
       <div class="cards__item"><img src="~@/assets/images/home3.png" /></div>
-      <div class="cards__item"><img src="~@/assets/images/home4.jpeg" /></div>
+      <div class="cards__item"><img src="~@/assets/images/home4.jpeg" /></div> -->
     </div>
     <!-- 测试接口 -->
     <!-- <div>
@@ -41,7 +62,8 @@
 </template>
 
 <script>
-const axios = require("axios");
+import { mapGetters } from "vuex";
+// const axios = require("axios");
 export default {
   data() {
     return {
@@ -74,6 +96,13 @@ export default {
     //   _this.test = resp.data
     //   console.log(_this.test)
     // })
+  },
+  mounted() {
+    this.$store.dispatch("getRecommend");
+    // console.log("生命周期函数mouted");
+  },
+  computed: {
+    ...mapGetters(["recommend"]),
   },
 };
 </script>
@@ -168,7 +197,7 @@ export default {
 .cards {
   display: flex;
   width: 1440px;
-  height: 500px;
+  height: 400px;
   flex-wrap: wrap;
   margin: auto;
 }
@@ -181,7 +210,38 @@ export default {
   margin-bottom: 50px;
   box-shadow: 12px 12px rgba(141, 135, 135, 0.3);
 }
-
+#cards_title {
+  font-size: 22px;
+  color: #101d37;
+  line-height: 25px;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: left;
+  padding-left: 15px;
+}
+#cards_info {
+  float: left;
+  color: #9399a5;
+  font-size: 14px;
+  max-width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 15px;
+}
+#cards_price {
+  float: right;
+  color: #fa5741;
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 5px;
+  padding-right: 6px;
+  font-family: 微软雅黑;
+}
 * {
   margin: 0;
   padding: 0;

@@ -15,4 +15,8 @@ export const reqRentalDetail = (id)=>requests({url:`http://127.0.0.1:4523/mock/1
 
 //完成租房
 //URL:/api/rentalDetail/complete method:post 参数：需要
-export const completeRenting = (params)=>requests({url:"http://127.0.0.1:4523/mock/1005801/api/rentalDetail/complete",method:'post',data:params})
+export const completeRenting = (params)=>requests({url:"http://127.0.0.1:4523/mock/1005801/api/rentalDetail/complete",method:'post',data:params});
+
+//首页租房推荐
+//URL:/api/recommendation method:get 参数：不需要
+export const reqRecommend = ()=>requests.get("http://127.0.0.1:4523/mock/1005801/api/recommendation");
