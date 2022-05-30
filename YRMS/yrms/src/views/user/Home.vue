@@ -33,7 +33,9 @@
         :key="index"
       >
         <!-- 图片 -->
+        <router-link :to="`/rentalDetail/${rental.id}`">
         <img :src="rental.img" />
+        </router-link>
         <!-- 信息 -->
         <div id="cards_title">
           <span>{{ rental.rentalType }}租·</span>
@@ -125,14 +127,14 @@ export default {
   font-size: 70px;
   font-weight: 700;
   padding-top: 180px;
-  padding-left: 150px;
+  padding-left: 240px;
   text-align: left;
   /* 怎么引public里图片资源? */
   /* background-image: url("`${publicPath}homebody.jpg`"); */
 }
 .container {
   /* display: flex; */
-  padding-left: 150px;
+  padding-left: 240px;
   background-color: white;
   /*flex-direction? */
   flex-direction: row-reverse;
@@ -148,6 +150,8 @@ export default {
   padding-left: 20px;
   font-size: 20px;
   border-radius: 10px 0 0 10px;
+  outline:medium;
+  /* border-width: 0; */
 }
 .search {
   background-color: #3072f6;

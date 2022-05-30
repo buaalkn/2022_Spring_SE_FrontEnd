@@ -19,7 +19,7 @@ const actions = {
 const getters = {
     //推荐列表
     recommend(state){
-       return state.recommend.rentallist;
+       return state.recommend.recommedlist;
     },
 };
 export default{

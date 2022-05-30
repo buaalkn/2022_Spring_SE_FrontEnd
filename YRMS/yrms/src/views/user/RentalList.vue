@@ -8,16 +8,16 @@
         <span class="nav_logo"></span>
         <ul class="nav_tab">
           <li class="navli">
-            <a href="">首页</a>
+            <a @click="goRefresh">首页</a>
           </li>
-          <li class="navli">
+          <!-- <li class="navli">
             <a href="">短租</a>
           </li>
           <li class="navli">
             <a href="">长租</a>
-          </li>
+          </li> -->
           <li class="navli">
-            <a href="">发布房源</a>
+            <a>发布房源</a>
           </li>
         </ul>
       </div>
@@ -30,6 +30,7 @@
             placeholder="请输入地区、类型和方式开始找房"
             v-model="searchText"
             @keyup.enter="goSearch"
+            
           />
           <span class="search_button" type="submit" @click="goSearch">
             <i class="iconfont icon-chazhao"></i>
@@ -220,9 +221,26 @@ export default {
       this.$store.dispatch("getRentalList", this.rentalParams);
     },
     goSearch() {
-        this.$route.params.keyword = this.searchText;
-        Object.assign(this.rentalParams, this.$route.query, this.$route.params);
-        this.getData();
+      this.$route.params.keyword = this.searchText;
+      Object.assign(this.rentalParams, this.$route.query, this.$route.params);
+      this.getData();
+    },
+    goRefresh() {
+      this.$route.params.keyword = "";
+      this.rentalParams.typeName = "";
+      this.rentalParams.Num = "";
+      this.rentalParams.locName = "";
+      this.currentIndex1 = 0;
+      this.currentIndex2 = 0;
+      this.currentIndex3 = 0;
+      this.searchText = "";
+      // rentalParams: {
+      // keyword: "", //搜索关键字
+      // typeName: "", //长/短租
+      // Num: "", //几人间
+      // locName: "", //位置
+      Object.assign(this.rentalParams, this.$route.query, this.$route.params);
+      this.getData();
     },
     goSelect(event) {
       let element = event.target;
