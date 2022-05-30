@@ -30,7 +30,6 @@
             placeholder="请输入地区、类型和方式开始找房"
             v-model="searchText"
             @keyup.enter="goSearch"
-            
           />
           <span class="search_button" type="submit" @click="goSearch">
             <i class="iconfont icon-chazhao"></i>
@@ -140,6 +139,7 @@
             </div>
           </div>
         </div>
+        <!-- <Pagination :pageNo="1" :pageSize="3" :total="91" :continues="5"></Pagination> -->
       </div>
       <!-- 侧栏 -->
       <div class="content_aside">
@@ -151,8 +151,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Pagination from "../../components/Pagination";
 export default {
   name: "RentalList",
+  components: {
+    Pagination,
+  },
   data() {
     return {
       searchText: this.$route.params.keyword,

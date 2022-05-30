@@ -24,7 +24,7 @@ export const reqUserLoginWithVfCode = (data) => requests({ url: 'http://127.0.0.
 
 //axios发请求返回结果是Promise对象
 //获取租房详细信息
-//URL:/api/rentalDetail method:get 参数：需要
+//URL:/api/rentalDetail/{id} method:get 参数：需要
 export const reqRentalDetail = (id)=>requests({url:`http://127.0.0.1:4523/mock/1005801/api/rentalDetails/${id}`,method:'get'});
 
 //完成租房
@@ -35,3 +35,6 @@ export const completeRenting = (params)=>requests({url:"http://127.0.0.1:4523/mo
 //URL:/api/recommendation method:get 参数：不需要
 export const reqRecommend = ()=>requests.get("http://127.0.0.1:4523/mock/1005801/api/recommendation");
 
+//获取订单列表
+//URL:/api/user/order/{id} method:get 参数：需要
+export const reqGetOrderInfo = (id)=>requests({url:`http://127.0.0.1:4523/mock/1005801/api/user/order/${id}`,method:'get'});

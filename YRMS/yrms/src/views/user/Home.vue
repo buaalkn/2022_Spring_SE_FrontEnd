@@ -34,7 +34,7 @@
       >
         <!-- 图片 -->
         <router-link :to="`/rentalDetail/${rental.id}`">
-        <img :src="rental.img" />
+          <img :src="rental.img" />
         </router-link>
         <!-- 信息 -->
         <div id="cards_title">
@@ -105,6 +105,9 @@ export default {
 </script>
 
 <style>
+a {
+  text-decoration: none;
+}
 .topbody {
   background-image: url("~@/assets/images/homebody.jpg");
   width: 100%;
@@ -145,7 +148,7 @@ export default {
   padding-left: 20px;
   font-size: 20px;
   border-radius: 10px 0 0 10px;
-  outline:medium;
+  outline: medium;
   /* border-width: 0; */
 }
 .search {
@@ -195,7 +198,7 @@ export default {
 }
 .cards {
   display: flex;
-  width: 1440px;
+  width: 1448px;
   height: 400px;
   flex-wrap: wrap;
   margin: auto;
@@ -208,6 +211,7 @@ export default {
   margin-right: 10px;
   margin-bottom: 50px;
   box-shadow: 12px 12px rgba(141, 135, 135, 0.3);
+  border: 1px solid #caccd3;
 }
 #cards_title {
   font-size: 22px;

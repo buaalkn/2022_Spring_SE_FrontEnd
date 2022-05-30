@@ -5,10 +5,10 @@
       <div id="detail_title">
         <span>{{ rentalDetail.rentalType }}租·</span>
         <span>{{ rentalDetail.name }} </span>
-        <pre> </pre>
-        <span>{{rentalDetail.num}}人间</span>
+        <pre></pre>
+        <span>{{ rentalDetail.num }}人间</span>
         <a>
-          <router-link to="/rental" id="detail_back">返回首页</router-link> 
+          <router-link to="/rental" id="detail_back">返回首页</router-link>
         </a>
       </div>
       <!-- 核心内容 -->
@@ -24,57 +24,85 @@
           </div>
           <!-- 信息列表 -->
           <ul id="core_list">
-              <li>
-                  <span>租赁方式： </span>
-                  {{ rentalDetail.rentalType }}租
-              </li>
-              <li>
-                  <span>房屋位置： </span>
-                  {{ rentalDetail.location }}
-              </li>
-              <li>
-                  <span>房屋类型： </span>
-                  {{ rentalDetail.num }}人间
-              </li>
-              <li>
-                  <span>房屋大小： </span>
-                  {{ rentalDetail.area }}㎡
-              </li>
+            <li>
+              <span>租赁方式： </span>
+              {{ rentalDetail.rentalType }}租
+            </li>
+            <li>
+              <span>房屋位置： </span>
+              {{ rentalDetail.location }}
+            </li>
+            <li>
+              <span>房屋类型： </span>
+              {{ rentalDetail.num }}人间
+            </li>
+            <li>
+              <span>房屋大小： </span>
+              {{ rentalDetail.area }}㎡
+            </li>
           </ul>
           <!-- 租房选项 -->
-          <button id="core_button" @click="completeRenting">我要租房</button>
+          <button id="core_button" @click="beginRenting">我要租房</button>
         </div>
+      </div>
+    </div>
+    <div id="bottom" v-if="this.isRenting===1">
+      <!-- 支付区域 -->
+      <div id="renting">
+        <div id="input_day">
+          <span> 输入租房天数： </span>
+          <span>
+            <input type="text" id="rent_input" v-model="rentLength"/>
+          </span>
+        </div>
+
+        <button id="pay_button" @click="completeRenting">
+          <div v-if="rentalDetail.rentalType === '短'">支付租金</div>
+          <div v-if="rentalDetail.rentalType === '长'">打印合同</div>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
-    data(){
-        return{
-          rentalParams:{
-            id: 0,//租房id
-            length: 0,//租房天数或月数
-            date: "",//租房日期
-          }
-        };
+  data() {
+    return {
+      rentalParams: {
+        id: 0, //租房id
+        length: "", //租房天数或月数
+        // date: "", //租房日期
+      },
+      isRenting: 0, //点击租房按钮后+1显示相应选项
+      rentLength: ""
+    };
+  },
+  mounted() {
+    this.$store.dispatch("getRentalDetail", this.$route.params.id);
+  },
+  computed: {
+    ...mapGetters(["rentalDetail"]),
+    ...mapGetters(["isRent"]),
+  },
+  methods: {
+    completeRenting() {
+      //确认租房后，向后端发送请求
+      this.rentalParams.length = this.rentLength;
+      Object.assign(this.rentalParams, this.$route.params);
+      this.$store.dispatch("completeRenting", this.rentalParams);
+      this.isRenting = 0;
+      alert("租房成功！");
+      this.$router.push({
+        name: "rental",
+        params: { keyword:""},
+      });
     },
-    mounted(){
-      this.$store.dispatch('getRentalDetail',this.$route.params.id);
-    },
-    computed:{
-      ...mapGetters(['rentalDetail']),
-      ...mapGetters(['isRent'])
-    },
-    methods:{
-      completeRenting(){
-        //确认租房后，向后端发送请求
-        Object.assign(this.rentalParams, this.$route.params);
-        this.$store.dispatch('completeRenting', this.rentalParams);
-      }
+    beginRenting(){
+      this.isRenting = 1;
     }
+  },
 };
 </script>
 
@@ -94,7 +122,7 @@ export default {
   line-height: 40px;
   color: #101d37;
 }
-#detail_back{
+#detail_back {
   float: right;
   position: absolute;
   right: 0;
@@ -148,19 +176,19 @@ export default {
   list-style: none;
   text-align: left;
 }
-#core_list > li{
-    position: relative;
-    overflow: visible;
-    overflow: initial;
-    font-size: 14px;
-    line-height: 14px;
-    margin-bottom: 10px;
-    color: #101d37;
+#core_list > li {
+  position: relative;
+  overflow: visible;
+  overflow: initial;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 10px;
+  color: #101d37;
 }
-#core_list > li >span{
-    color: #9399a5;
+#core_list > li > span {
+  color: #9399a5;
 }
-#core_button{
+#core_button {
   font-size: 24px;
   font-weight: 600;
   /* position: absolute; */
@@ -178,5 +206,59 @@ export default {
   text-align: center;
   color: #fff;
 }
-
+#bottom {
+  width: 1150px;
+  margin: auto;
+}
+#renting {
+  width: 565px;
+  height: 50px;
+  float: right;
+  background-color: rgb(158, 157, 157);
+  margin-top: 20px;
+  border: 1px solid #caccd3;
+  background-color: rgb(250, 250, 250);
+}
+#input_day {
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-family: 微软雅黑;
+  font-size: 16px;
+  font-weight: 600;
+}
+#rent_input{
+  border-color: transparent;
+  /* Take available width */
+  width: 50px;
+  height: 20px;
+  /* float: left; */
+  /* padding-left: 20px; */
+  font-size: 20px;
+  border-radius: 8px;
+  outline: medium;
+  text-align: center;
+  vertical-align:middle;
+  font-size: 16px;
+  border: 1px solid #caccd3;
+}
+#pay_button {
+  font-size: 22px;
+  font-weight: 600;
+  /* position: absolute; */
+  /* vertical-align: baseline; */
+  /* left: 0; */
+  /* bottom: 0; */
+  background-color: #f18832;
+  width: 130px;
+  height: 40px;
+  float: right;
+  border: 0;
+  border-radius: 13px;
+  margin-top: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+}
 </style>

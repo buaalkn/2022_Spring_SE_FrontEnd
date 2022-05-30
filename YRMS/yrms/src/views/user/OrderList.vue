@@ -1,27 +1,31 @@
 <template>
   <div>
+    <!-- 未登录 -->
+    <div v-if="1===0">
+      <div class="login_warning">请先登录！</div>
+    </div>
     <!-- 页面主体 -->
-    <div id="container">
+    <div id="container" v-if="1===1">
       <div id="main">
         <!-- 文本 -->
         <div class="main-title">我的订单</div>
         <!-- 订单列表 -->
         <div class="list-title"></div>
         <!-- v-for循环单个订单信息 -->
-        <div class="list-item" v-for="(item, index) in arr" :key="index">
-          <img class="item-img" :src="item.src" />
+        <div class="list-item" v-for="(item, index) in orderList" :key="index">
+          <img class="item-img" :src="item.img" />
           <div class="item-text">
             <div class="item-mes">
-              <span>{{ item.kind }}·</span>
+              <span>{{ item.rentalType }}租·</span>
               <span>{{ item.name }} </span>
-              <span>{{ item.number }}</span>
+              <span>{{ item.num }}人间</span>
             </div>
             <button class="item-jump">查看详情</button>
             <span class="item-price">
               <span>{{ item.price }} </span>
               <span class="item-per">元/月</span>
             </span>
-            <span class="item-date">{{item.time}}</span>
+            <span class="item-date">{{item.date}}</span>
           </div>
         </div>
       </div>
@@ -30,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -61,18 +66,31 @@ export default {
       ],
     };
   },
+  mounted(){
+    //get请求，参数为当前用户id
+    this.$store.dispatch('getOrderList',1);
+  },
+  computed:{
+    ...mapGetters(['orderList']),
+  }
 };
 </script>
 
 <style>
+.login_warning{
+  font-size: 70px;
+  font-weight: 700;
+  margin-top:10%;
+}
 #main {
-  width: 1210px;
+  width: 1150px;
   /* height: 500px; */
   /* background-color: rgb(139, 137, 137); */
   margin: auto;
+  padding-top: 20px;
 }
 .main-title {
-  font-size: 58px;
+  font-size: 50px;
   font-weight: 700;
   font-family: PingFangSC-Semibold;
   text-align: left;
@@ -98,7 +116,7 @@ export default {
   position: relative;
 }
 .item-mes {
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 600;
 }
 .item-price {
