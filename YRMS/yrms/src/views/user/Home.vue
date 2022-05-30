@@ -55,11 +55,6 @@
       <div class="cards__item"><img src="~@/assets/images/home3.png" /></div>
       <div class="cards__item"><img src="~@/assets/images/home4.jpeg" /></div> -->
     </div>
-    <!-- 测试接口 -->
-    <!-- <div>
-      <div>{{test.data.time}}</div>
-      <img :src="test.data.img">
-    </div> -->
   </div>
 </template>
 
