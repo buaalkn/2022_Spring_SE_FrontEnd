@@ -59,7 +59,17 @@ const routes = [
     path: '/addRental',
     name: 'addRental',
     component: () => import('../views/admin/AddRental.vue')
-  }
+  },
+  {
+    path: '/orderDetail/:id',
+    name: 'orderDetail',
+    component: () => import('../views/user/OrderDetail.vue')
+  },
+  {
+    path: '/complaint',
+    name: 'complaint',
+    component: () => import('../views/user/Complaint.vue')
+  },
 ]
 
 const router = new VueRouter({

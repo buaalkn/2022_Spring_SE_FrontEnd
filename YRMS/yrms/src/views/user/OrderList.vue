@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- 未登录 -->
-    <div v-if="1===0">
+    <div v-if="1 === 0">
       <div class="login_warning">请先登录！</div>
     </div>
     <!-- 页面主体 -->
-    <div id="container" v-if="1===1">
+    <div id="container" v-if="1 === 1">
       <div id="main">
         <!-- 文本 -->
         <div class="main-title">我的订单</div>
@@ -20,12 +20,14 @@
               <span>{{ item.name }} </span>
               <span>{{ item.num }}人间</span>
             </div>
-            <button class="item-jump">查看详情</button>
+            <router-link :to="`/orderDetail/${item.id}`">
+              <button class="item-jump">查看详情</button>
+            </router-link>
             <span class="item-price">
               <span>{{ item.price }} </span>
               <span class="item-per">元/月</span>
             </span>
-            <span class="item-date">{{item.date}}</span>
+            <span class="item-date">{{ item.date }}</span>
           </div>
         </div>
       </div>
@@ -34,7 +36,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -66,21 +68,22 @@ export default {
       ],
     };
   },
-  mounted(){
+  mounted() {
     //get请求，参数为当前用户id
-    this.$store.dispatch('getOrderList',1);
+    this.$store.dispatch("getOrderList", 1);
   },
-  computed:{
-    ...mapGetters(['orderList']),
-  }
+  methods: {},
+  computed: {
+    ...mapGetters(["orderList"]),
+  },
 };
 </script>
 
 <style>
-.login_warning{
+.login_warning {
   font-size: 70px;
   font-weight: 700;
-  margin-top:10%;
+  margin-top: 10%;
 }
 #main {
   width: 1150px;
@@ -129,13 +132,13 @@ export default {
   font-family: Tahoma;
   color: rgb(255, 128, 0);
 }
-.item-per{
-    font-size: 20px;
-    font-weight: 600;
+.item-per {
+  font-size: 20px;
+  font-weight: 600;
 }
 .item-jump {
   font-size: 17px;
-  font-weight:600;
+  font-weight: 600;
   position: absolute;
   vertical-align: baseline;
   left: 0;
@@ -150,12 +153,12 @@ export default {
   text-align: center;
   color: #fff;
 }
-.item-date{
-    font-size: 18px;
-    font-weight: 400;
-    color: #797e81;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+.item-date {
+  font-size: 18px;
+  font-weight: 400;
+  color: #797e81;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 </style>

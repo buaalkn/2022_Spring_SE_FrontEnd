@@ -9,6 +9,8 @@ import rentalDetail from './rentalDetail';
 import home from './home';
 import order from './order';
 import addRental from './addRental';
+import orderDetail from './orderDetail';
+import complaint from './complaint';
 export default new Vuex.Store({
   state: {
   },
@@ -24,7 +26,9 @@ export default new Vuex.Store({
     rentalDetail,
     home,
     order,
-    addRental
+    addRental,
+    orderDetail,
+    complaint
   }
 });
 //state:仓库存储数据的地方

@@ -40,6 +40,10 @@ export default {
           path: "/order",
         },
         {
+          title: "报修",
+          path: `/complaint`,
+        },
+        {
           title: "登录",
           path: "/login",
         },
