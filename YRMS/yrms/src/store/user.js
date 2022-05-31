@@ -40,7 +40,8 @@ const actions = {
         let result = await reqUserLogin(data);
         //服务器下发的token 是每个用户唯一的标识符
         //通过带token的找服务器要信息
-        if (result.code == 200) {
+        console.log(result);
+        if (result.status== 200) {
             commit("USERLOGIN", result.data.token);
             return 'ok';
         } else {

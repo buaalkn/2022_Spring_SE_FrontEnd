@@ -95,7 +95,7 @@ export default {
           password &&
           (await this.$store.dispatch("userLogin", { phone, password }));
         //跳转到Home首页
-        this.$router.push("home");
+        this.$router.push({name:"home"});
       } catch (error) {
         alert(error.message);
       }

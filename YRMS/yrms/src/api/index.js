@@ -19,7 +19,7 @@ export const reqUserRegister = (data) => requests({ url: 'http://127.0.0.1:4523/
 
 //登录
 //URL:/api/user/passport/login method:post	 phone password
-export const reqUserLogin = (data) => requests({ url: 'http://127.0.0.1:4523/mock/1005801/user/passport/login', data, method: 'post' });
+export const reqUserLogin = (data) => requests({ url: 'http://127.0.0.1:4523/mock/1005801/api/register', data, method: 'post' });
 
 //验证码登录
 //URL:/api/user/passport/loginvf method:post	 phone code
