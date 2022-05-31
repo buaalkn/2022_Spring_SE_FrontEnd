@@ -70,6 +70,12 @@ const routes = [
     name: 'complaint',
     component: () => import('../views/user/Complaint.vue')
   },
+  {
+    path: '/tenantMessage',
+    name: 'tenantMessage',
+    component: () =>
+      import('../views/user/TenantMessage.vue')
+  }
 ]
 
 const router = new VueRouter({

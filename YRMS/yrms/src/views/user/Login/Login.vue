@@ -47,8 +47,7 @@
             </div>
             <div class="login_panel_forget_password">
               <router-link to="/loginvf" class="forget_password"
-                >忘记密码</router-link
-              >
+                >忘记密码</router-link>
             </div>
 
             <div class="login_btn" @click="userLogin">登录</div>

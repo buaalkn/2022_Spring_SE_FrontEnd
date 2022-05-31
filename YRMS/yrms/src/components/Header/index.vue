@@ -19,7 +19,8 @@
         <!-- 登录状态 -->
         <div class="login_state">{{ this.login }}</div>
         <!-- 小图标 -->
-        <i class="el-icon-user"></i>
+        <!-- <i class="el-icon-user"></i> -->
+        <router-link to="/tenantMessage" class="el-icon-user"></router-link>
       </div>
     </el-menu>
   </div>
