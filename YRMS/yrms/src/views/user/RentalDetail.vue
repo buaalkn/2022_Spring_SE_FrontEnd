@@ -5,7 +5,7 @@
       <div id="detail_title">
         <span>{{ rentalDetail.rentalType }}租·</span>
         <span>{{ rentalDetail.name }} </span>
-        <pre></pre>
+        <pre> </pre>
         <span>{{ rentalDetail.num }}人间</span>
         <a>
           <router-link to="/rental" id="detail_back">返回首页</router-link>

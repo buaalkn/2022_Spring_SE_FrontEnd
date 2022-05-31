@@ -17,7 +17,7 @@
             <a href="">长租</a>
           </li> -->
           <li class="navli">
-            <a>发布房源</a>
+            <a @click="goAddRental">发布房源</a>
           </li>
         </ul>
       </div>
@@ -245,6 +245,11 @@ export default {
       // locName: "", //位置
       Object.assign(this.rentalParams, this.$route.query, this.$route.params);
       this.getData();
+    },
+    goAddRental() {
+      this.$router.push({
+        name: "addRental",
+      });
     },
     goSelect(event) {
       let element = event.target;

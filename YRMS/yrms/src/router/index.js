@@ -54,6 +54,11 @@ const routes = [
     path: '/rentalDetail/:id',
     name: 'rentalDetail',
     component: () => import('../views/user/RentalDetail.vue')
+  },
+  {
+    path: '/addRental',
+    name: 'addRental',
+    component: () => import('../views/admin/AddRental.vue')
   }
 ]
 

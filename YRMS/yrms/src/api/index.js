@@ -7,7 +7,11 @@ export const reqGetCode = (phone) => requests({ url: `http://127.0.0.1:4523/mock
 
 //获取租房数据 
 //URL:/api/rentalList method:post 参数：需要
-export const reqGetRentalInfo = (params)=>requests({url:"http://127.0.0.1:4523/mock/1005801/api/rentalList",method:'post',data:params});
+export const reqGetRentalInfo = (params) => requests({
+    url: "http://127.0.0.1:4523/mock/1005801/api/rentalList", method: 'post', data: params, headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+});
 
 //注册
 //URL:/api/user/passport/register method:post	 phone code password
@@ -25,16 +29,35 @@ export const reqUserLoginWithVfCode = (data) => requests({ url: 'http://127.0.0.
 //axios发请求返回结果是Promise对象
 //获取租房详细信息
 //URL:/api/rentalDetail/{id} method:get 参数：需要
-export const reqRentalDetail = (id)=>requests({url:`http://127.0.0.1:4523/mock/1005801/api/rentalDetails/${id}`,method:'get'});
+export const reqRentalDetail = (id) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/rentalDetails/${id}`, method: 'get', headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+});
 
 //完成租房
 //URL:/api/rentalDetail/complete method:post 参数：需要
-export const completeRenting = (params)=>requests({url:"http://127.0.0.1:4523/mock/1005801/api/rentalDetail/complete",method:'post',data:params});
+export const completeRenting = (params) => requests({
+    url: "http://127.0.0.1:4523/mock/1005801/api/rentalDetail/complete", method: 'post', data: params,
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+});
 
 //首页租房推荐
 //URL:/api/recommendation method:get 参数：不需要
-export const reqRecommend = ()=>requests.get("http://127.0.0.1:4523/mock/1005801/api/recommendation");
+export const reqRecommend = () => requests.get("http://127.0.0.1:4523/mock/1005801/api/recommendation");
 
 //获取订单列表
 //URL:/api/user/order/{id} method:get 参数：需要
-export const reqGetOrderInfo = (id)=>requests({url:`http://127.0.0.1:4523/mock/1005801/api/user/order/${id}`,method:'get'});
+export const reqGetOrderInfo = (id) => requests({ url: `http://127.0.0.1:4523/mock/1005801/api/user/order/${id}`, method: 'get' });
+
+//添加租房
+//URL:/api/room/add_room method:post 参数：需要
+export const completeAddRental = (params) => requests({
+    url: "http://127.0.0.1:4523/mock/1005801/api/room/add_room", method: 'post', data: params,
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+})
+

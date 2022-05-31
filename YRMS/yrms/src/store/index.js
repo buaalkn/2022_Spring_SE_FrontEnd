@@ -8,6 +8,7 @@ import rental from './rental';
 import rentalDetail from './rentalDetail';
 import home from './home';
 import order from './order';
+import addRental from './addRental';
 export default new Vuex.Store({
   state: {
   },
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     rental,
     rentalDetail,
     home,
-    order
+    order,
+    addRental
   }
 });
 //state:仓库存储数据的地方

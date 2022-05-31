@@ -10,7 +10,7 @@ const mutations = {
 const actions = {
     async getRecommend({commit}){
         let result = await reqRecommend();
-        console.log(result);
+        // console.log(result);
         if(result.status == 200){
             commit("GETRECOMMEND",result.data);
         }
