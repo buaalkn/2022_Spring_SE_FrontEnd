@@ -14,8 +14,8 @@ const request = axios.create({
 //请求拦截器：在发请求之前，请求拦截器可以检测到，可以在请求发出去之前做一些事情
 request.interceptors.request.use((config) => {
     //需要携带token带给服务器
-    if (store.state.user.token) {
-        config.header.token = store.state.user.token;
+    if (store.state.user.id) {
+        config.header.id = store.state.user.id;
     }
     return config;
 })

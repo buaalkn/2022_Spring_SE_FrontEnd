@@ -2,7 +2,7 @@
 import requests from './request';
 
 //获取验证码
-//URL:/api/sendCode/{phone} method:get
+//URL:/api/sendCode/{phone}{type}  method:get
 export const reqGetCode = (phone) => requests({
     url: `http://127.0.0.1:4523/mock/1005801/api/sendCode/${phone}`,
     method: 'get'
