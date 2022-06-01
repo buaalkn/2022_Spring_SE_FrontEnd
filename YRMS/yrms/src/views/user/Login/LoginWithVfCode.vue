@@ -85,8 +85,6 @@ export default {
       phone: "",
       //验证码
       code: "",
-      //种类
-      type: 1,
     };
   },
   methods: {
@@ -113,6 +111,8 @@ export default {
         else{
           await this.$store.dispatch("userLoginWithVfCode", { phone, code });
           alert("登录成功");
+          //获取用户信息
+          this.$store.dispatch("getUserInfo");
           //跳转到Home首页
           this.$router.push({name:"home"});
         }

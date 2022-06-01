@@ -33,9 +33,10 @@ export const reqUserLoginWithVfCode = (data) => requests({
 });
 
 //获取用户信息
-//URL:/api/getUserInfo  method:get	
-export const reqUserInfo = () => requests({
+//URL:/api/getUserInfo  method:get	data
+export const reqUserInfo = (data) => requests({
     url: 'http://127.0.0.1:4523/mock/1005801/api/getUserInfo',
+    data,
     method: 'get'
 });
 

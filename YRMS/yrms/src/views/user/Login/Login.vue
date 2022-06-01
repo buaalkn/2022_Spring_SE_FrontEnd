@@ -96,6 +96,8 @@ export default {
         else{
           await this.$store.dispatch("userLogin", { phone, password });
           alert("登录成功");
+          //获取用户信息
+          this.$store.dispatch("getUserInfo");
           //跳转到Home首页
           this.$router.push({name:"home"});
         }

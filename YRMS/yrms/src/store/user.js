@@ -8,8 +8,10 @@ import { reqUserInfo } from "@/api";
 //登录注册模块
 const state = {
     code: '',
-    id: '',
+    id: localStorage.getItem('ID'),
     userInfo: {},
+    username: localStorage.getItem('USERNAME'),
+    // userInfo: localStorage.getItem('USERNAME'),
 };
 const mutations = {
     GETCODE(state, code) {
@@ -56,6 +58,8 @@ const actions = {
         //通过带token的找服务器要信息
         if (result.status == 200) {
             commit("USERLOGIN", result.data.id);
+            //持久化存储id
+            localStorage.setItem("ID", result.data.id);
             return 'ok';
         } else {
             return Promise.reject(new Error('faile'));
@@ -70,6 +74,8 @@ const actions = {
         //通过带token的找服务器要信息
         if (result.status == 200) {
             commit("USERLOGIN", result.data.id);
+            //持久化存储id
+            localStorage.setItem("ID", result.data.id);
             return 'ok';
         } else {
             return Promise.reject(new Error('faile'));
@@ -77,12 +83,14 @@ const actions = {
     },
 
     //获取用户信息
-    async getUserInfo({ commit }) {
-        let result = await reqUserInfo();
+    async getUserInfo({ commit }, data) {
+        let result = await reqUserInfo(data);
         console.log(result);
         //提交用户信息
         if (result.status == 200) {
             commit("GETUSERINFO", result.data);
+            //持久化存储用户名
+            localStorage.setItem("USERNAME", result.data.username);
             return 'ok';
         } else {
             return Promise.reject(new Error('faile'));

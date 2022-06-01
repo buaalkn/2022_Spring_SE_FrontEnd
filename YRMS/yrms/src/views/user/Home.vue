@@ -98,7 +98,7 @@ export default {
     this.$store.dispatch("getRecommend");
     // console.log("生命周期函数mouted");
     //获取用户信息
-    this.$store.dispatch("getUserInfo");
+    // this.$store.dispatch("getUserInfo");
   },
   computed: {
     ...mapGetters(["recommend"]),

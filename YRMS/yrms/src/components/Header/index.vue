@@ -17,7 +17,10 @@
       </template>
       <div class="user_login">
         <!-- 登录状态 -->
-        <div class="login_state">{{ this.login }}</div>
+        <!-- 未登录显示游客 -->
+        <div class="login_state" v-if="!username">{{ this.login }}</div>
+        <!-- 登录显示用户名 -->
+        <div class="login_state" v-else>{{username}}</div>
         <!-- 小图标 -->
         <!-- <i class="el-icon-user"></i> -->
         <router-link to="/tenantMessage" class="el-icon-user"></router-link>
@@ -72,6 +75,12 @@ export default {
       console.log(key, keyPath);
     },
   },
+  computed:{
+    //用户名信息
+    username(){
+      return this.$store.state.user.username;
+    }
+  }
 };
 </script>
 
