@@ -10,7 +10,7 @@
       active-text-color="rgb(119, 191, 227)"
       router
     >
-      <template v-for="(item, index) in nav_menu_data">
+      <template v-for="(item, index) in nav_menu_data" >
         <el-menu-item :index="item.path" :key="index" class="el-menu-item">
           {{ item.title }}
         </el-menu-item>

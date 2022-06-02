@@ -100,6 +100,8 @@ export default {
           this.$store.dispatch("getUserInfo");
           //跳转到Home首页
           this.$router.push({name:"home"});
+          //自动刷新
+        this.$router.go(0);
         }
       } catch (error) {
         alert(error.message);

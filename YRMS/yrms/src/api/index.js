@@ -3,11 +3,16 @@ import requests from './request';
 
 //获取验证码
 //URL:/api/sendCode/{phone}{type}  method:get
-export const reqGetCode = (phone) => requests({
-    url: `http://127.0.0.1:4523/mock/1005801/api/sendCode/${phone}`,
-    method: 'get'
+// export const reqGetCode = (phone) => requests({
+//     url: `http://127.0.0.1:4523/mock/1005801/api/sendCode/${phone}`,
+//     method: 'get'
+// });
+//URL:/api/sendCode  method:post  phone type
+export const reqGetCode = (data) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/sendCode`,
+    data,
+    method: 'post'
 });
-
 //注册
 //URL:/api/register method:post	 username phone code password
 export const reqUserRegister = (data) => requests({
@@ -37,6 +42,13 @@ export const reqUserLoginWithVfCode = (data) => requests({
 export const reqUserInfo = (data) => requests({
     url: 'http://127.0.0.1:4523/mock/1005801/api/getUserInfo',
     data,
+    method: 'get'
+});
+
+//退出登录
+//URL:/api/logout  method:get	data
+export const reqLogout = () => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/logout`,
     method: 'get'
 });
 

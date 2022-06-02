@@ -85,6 +85,8 @@ export default {
       phone: "",
       //验证码
       code: "",
+      //种类
+      type: 1,
     };
   },
   methods: {
@@ -93,10 +95,11 @@ export default {
       //验证有手机号存在的情况下
       try {
         //如果获取到验证码
-        const { phone } = this;
-        phone && (await this.$store.dispatch("getCode", phone));
+        const { phone, type } = this;
+        phone && (await this.$store.dispatch("getCode", {phone, type}));
         //将组件的code属性值变为仓库的验证码[自动填写]
-        console.log(this.$store);
+        // console.log(this.$store);
+        // console.log(type);
         console.log(this.$store.state.user.code.code);
         this.code = this.$store.state.user.code.code;
       } catch (error) {}
@@ -115,6 +118,8 @@ export default {
           this.$store.dispatch("getUserInfo");
           //跳转到Home首页
           this.$router.push({name:"home"});
+          //自动刷新
+        this.$router.go(0);
         }
       } catch (error) {
         alert(error.message);

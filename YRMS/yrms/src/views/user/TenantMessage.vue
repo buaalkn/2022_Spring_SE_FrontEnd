@@ -17,7 +17,6 @@
               placeholder="请输入昵称"
             />
           </li>
-          
         </ul>
       </form>
       <div class="tab">
@@ -59,12 +58,37 @@
         </ul>
       </form>
     </div>
+    <li style="margin-top: 30px">
+      <a class="logout-btn" v-if="username" @click="logout">退出登录</a>
+    </li>
   </div>
 </template>
 
 <script>
 export default {
   name: "TenantMessage",
+  methods: {
+    //退出登录
+    async logout() {
+      //发请求通知服务器【清除数据】
+      //清除项目中的本地存储的数据
+      try {
+        //如果退出成功
+        await this.$store.dispatch("userLogout");
+        alert("您已成功退出登录");
+        //回到首页
+        this.$router.push({ name: "home" });
+        //自动刷新
+        this.$router.go(0);
+      } catch (error) {}
+    },
+  },
+  computed: {
+    //用户名信息
+    username() {
+      return this.$store.state.user.username;
+    },
+  },
 };
 </script>
 
@@ -131,6 +155,7 @@ li {
   background-color: #fff;
   border: 1px solid #e6e5e5;
   width: 755px;
+  margin-left: 90px;
 }
 
 .title {
@@ -171,7 +196,8 @@ li {
   clear: both;
   padding-top: 30px;
 }
-.submit-btn {
+.submit-btn,
+.logout-btn {
   width: 240px;
   height: 40px;
   padding: 0 5px;

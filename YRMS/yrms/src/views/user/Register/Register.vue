@@ -118,6 +118,8 @@ export default {
       password1: "",
       //是否同意协议
       agree: true,
+      //种类
+      type: 0,
     };
   },
   methods: {
@@ -126,8 +128,9 @@ export default {
       //验证有手机号存在的情况下
       try {
         //如果获取到验证码
-        const { phone } = this;
-        phone && (await this.$store.dispatch("getCode", phone));
+        const { phone, type } = this;
+        phone && (await this.$store.dispatch("getCode", {phone, type}));
+        // console.log(type);
         //将组件的code属性值变为仓库的验证码[自动填写]
         console.log(this.$store);
         this.code = this.$store.state.user.code.code;
