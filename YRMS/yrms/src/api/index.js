@@ -2,37 +2,97 @@
 import requests from './request';
 
 //获取验证码
-//URL:/api/user/passport/sendCode/{phone} method:get
-export const reqGetCode = (phone) => requests({ url: `http://127.0.0.1:4523/mock/1005801/api/user/passport/sendCode/${phone}`, method: 'get' });
+//URL:/api/sendCode/{phone}{type}  method:get
+// export const reqGetCode = (phone) => requests({
+//     url: `http://127.0.0.1:4523/mock/1005801/api/sendCode/${phone}`,
+//     method: 'get'
+// });
+//URL:/api/sendCode  method:post  phone type
+export const reqGetCode = (data) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/sendCode`,
+    data,
+    method: 'post'
+});
+//注册
+//URL:/api/register method:post	 username phone code password
+export const reqUserRegister = (data) => requests({
+    url: 'http://127.0.0.1:4523/mock/1005801/api/register',
+    data,
+    method: 'post'
+});
+
+//登录
+//URL:/api/login method:post	 phone password
+export const reqUserLogin = (data) => requests({
+    url: 'http://127.0.0.1:4523/mock/1005801/api/login',
+    data,
+    method: 'post'
+});
+
+//验证码登录
+//URL:/api/loginvf method:post	 phone code
+export const reqUserLoginWithVfCode = (data) => requests({
+    url: 'http://127.0.0.1:4523/mock/1005801/api/loginvf',
+    data,
+    method: 'post'
+});
+
+//获取用户信息
+//URL:/api/getUserInfo  method:get	data
+export const reqUserInfo = (data) => requests({
+    url: 'http://127.0.0.1:4523/mock/1005801/api/getUserInfo',
+    data,
+    method: 'get'
+});
+
+//退出登录
+//URL:/api/logout  method:get	data
+export const reqLogout = () => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/logout`,
+    method: 'get'
+});
+
+//修改用户名
+//URL:/api/updateName  method:post	data
+export const reqUpdateName = (data) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/updateName`,
+    data,
+    method: 'post'
+})
+
+//修改密码
+//URL:/api/updatepw  method:post	data
+export const reqUpdatePwd = (data) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/updatepw`,
+    data,
+    method: 'post'
+})
+
 
 //获取租房数据 
 //URL:/api/rentalList method:post 参数：需要
 export const reqGetRentalInfo = (params) => requests({
-    url: "http://127.0.0.1:4523/mock/1005801/api/rentalList", method: 'post', data: params, headers: {
+    url: "http://127.0.0.1:4523/mock/1005801/api/rentalList",
+    method: 'post',
+    data: params,
+    headers: {
         'Content-Type': 'multipart/form-data'
     }
 });
 
-//注册
-//URL:/api/user/passport/register method:post	 phone code password
-export const reqUserRegister = (data) => requests({ url: 'http://127.0.0.1:4523/mock/1005801/user/passport/register', data, method: 'post' });
-
-//登录
-//URL:/api/user/passport/login method:post	 phone password
-export const reqUserLogin = (data) => requests({ url: 'http://127.0.0.1:4523/mock/1005801/api/register', data, method: 'post' });
-
-//验证码登录
-//URL:/api/user/passport/loginvf method:post	 phone code
-export const reqUserLoginWithVfCode = (data) => requests({ url: 'http://127.0.0.1:4523/mock/1005801/user/passport/loginvf', data, method: 'post' });
-
 //获取租房详细信息
 //URL:/api/rentalDetail/{id} method:get 参数：需要
-export const reqRentalDetail = (id) => requests({ url: `http://127.0.0.1:4523/mock/1005801/api/rentalDetails/${id}`, method: 'get' });
+export const reqRentalDetail = (id) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/rentalDetails/${id}`,
+    method: 'get'
+});
 
 //完成租房
 //URL:/api/rentalDetail/complete method:post 参数：需要
 export const completeRenting = (params) => requests({
-    url: "http://127.0.0.1:4523/mock/1005801/api/rentalDetail/complete", method: 'post', data: params,
+    url: "http://127.0.0.1:4523/mock/1005801/api/rentalDetail/complete",
+    method: 'post',
+    data: params,
     headers: {
         'Content-Type': 'multipart/form-data'
     }
@@ -49,7 +109,9 @@ export const reqGetOrderInfo = (id) => requests({ url: `http://127.0.0.1:4523/mo
 //添加租房
 //URL:/api/room/add_room method:post 参数：需要
 export const completeAddRental = (params) => requests({
-    url: "http://127.0.0.1:4523/mock/1005801/api/room/add_room", method: 'post', data: params,
+    url: "http://127.0.0.1:4523/mock/1005801/api/room/add_room",
+    method: 'post',
+    data: params,
     headers: {
         'Content-Type': 'multipart/form-data'
     }
@@ -62,7 +124,9 @@ export const reqOrderDetail = (id) => requests({ url: `http://127.0.0.1:4523/moc
 //删除当前订单
 //URL:/api/user/deleteOrder method:post 参数：需要
 export const deleteOrder = (params) => requests({
-    url: 'http://127.0.0.1:4523/mock/1005801/api/user/deleteOrder', method: 'post', data: params,
+    url: 'http://127.0.0.1:4523/mock/1005801/api/user/deleteOrder',
+    method: 'post',
+    data: params,
     headers: {
         'Content-Type': 'multipart/form-data'
     }
@@ -71,7 +135,9 @@ export const deleteOrder = (params) => requests({
 //续约长租订单
 //URL:/api/user/deleteOrder method:post 参数：需要
 export const continueOrder = (params) => requests({
-    url: 'http://127.0.0.1:4523/mock/1005801/api/user/continueOrder', method: 'post', data: params,
+    url: 'http://127.0.0.1:4523/mock/1005801/api/user/continueOrder',
+    method: 'post',
+    data: params,
     headers: {
         'Content-Type': 'multipart/form-data'
     }
@@ -80,7 +146,9 @@ export const continueOrder = (params) => requests({
 //报修投诉
 //URL:/api/user/complaint method:post 参数：需要
 export const complaint = (params) => requests({
-    url: 'http://127.0.0.1:4523/mock/1005801/api/user/complaint', method: 'post', data: params,
+    url: 'http://127.0.0.1:4523/mock/1005801/api/user/complaint',
+    method: 'post',
+    data: params,
     headers: {
         'Content-Type': 'multipart/form-data'
     }

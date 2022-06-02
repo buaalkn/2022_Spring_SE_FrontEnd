@@ -15,10 +15,14 @@
               name="newName"
               id="newName"
               placeholder="请输入昵称"
+              v-model="newUsername"
             />
           </li>
-          
         </ul>
+        <li>
+          <span></span>
+          <a class="submit-btn" @click="updateName" style="margin-left:100px">保存修改</a>
+        </li>
       </form>
       <div class="tab">
         <span class="actTap">修改密码</span>
@@ -26,21 +30,13 @@
       <form>
         <ul class="change-pwd">
           <li>
-            <span>输入旧密码：</span>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="请输入密码"
-            />
-          </li>
-          <li>
             <span>设置新密码：</span>
             <input
               type="password"
               name="newPassword"
               id="newPassword"
               placeholder="请输入新密码"
+              v-model="newPassword"
             />
           </li>
           <li>
@@ -50,21 +46,98 @@
               name="newPassword1"
               id="newPassword1"
               placeholder="确认新密码"
+              v-model="newPassword1"
             />
           </li>
           <li>
             <span></span>
-            <a class="submit-btn">保存修改</a>
+            <a @click="updatePwd" class="submit-btn">保存修改</a>
           </li>
         </ul>
       </form>
     </div>
+    <li style="margin-top: 30px">
+      <a class="logout-btn" @click="logout" style="background-color:#545c64;">退出登录</a>
+    </li>
   </div>
 </template>
 
 <script>
 export default {
   name: "TenantMessage",
+
+  data() {
+    return {
+      //用户名
+      username: user_name(),
+      //新昵称
+      newUsername: "",
+      //新密码
+      newPassword: "",
+      //确认新密码
+      newPassword1: "",
+    };
+  },
+
+  methods: {
+    //退出登录
+    async logout() {
+      //发请求通知服务器【清除数据】
+      //清除项目中的本地存储的数据
+      try {
+        //如果退出成功
+        await this.$store.dispatch("userLogout");
+        alert("您已成功退出登录");
+        //回到首页
+        this.$router.push({ name: "home" });
+        //自动刷新
+        this.$router.go(0);
+      } catch (error) {}
+    },
+
+    //修改用户名
+    async updateName() {
+      try {
+        const { username, newUsername } = this;
+        if(!newUsername)  alert("请输入昵称");
+        else{
+          await this.$store.dispatch("updateName", { username, newUsername });
+          alert("修改用户名成功,请您重新登录");
+          //退出登录
+          this.$store.dispatch("userLogout");
+          //跳转到Home首页
+          this.$router.push({name:"home"});
+          //自动刷新
+          this.$router.go(0);
+        }
+      } catch (error) {}
+    },
+
+    //修改密码
+    async updatePwd() {
+      try {
+        const { username, newPassword, newPassword1 } = this;
+        if(!newPassword)  alert("请输入新密码");
+        else if(!newPassword1)  alert("请确认新密码");
+        else{
+          await this.$store.dispatch("updatePwd", { username, newPassword, newPassword1 });
+          alert("修改密码成功,请您重新登录");
+          //退出登录
+          this.$store.dispatch("userLogout");
+          //跳转到Home首页
+          this.$router.push({name:"home"});
+          //自动刷新
+          this.$router.go(0);
+        }
+      } catch (error) {}
+    },
+  },
+  computed: {
+    //用户名信息
+    user_name() {
+      return this.$store.state.user.username;
+    },
+  },
 };
 </script>
 
@@ -131,6 +204,7 @@ li {
   background-color: #fff;
   border: 1px solid #e6e5e5;
   width: 755px;
+  margin-left: 90px;
 }
 
 .title {
@@ -171,11 +245,12 @@ li {
   clear: both;
   padding-top: 30px;
 }
-.submit-btn {
+.submit-btn,
+.logout-btn {
   width: 240px;
   height: 40px;
   padding: 0 5px;
-  background-color: #545c64;
+  background-color:#888;
   cursor: pointer;
   color: #fff;
   text-align: center;

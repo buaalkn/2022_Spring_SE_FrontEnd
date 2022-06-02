@@ -19,10 +19,19 @@
               <li class="form_input_item" style>
                 <input
                   class="phonenum_input"
+                  placeholder="请输入用户名"
+                  type="text"
+                  style="font-size: 15px"
+                  v-model="username"
+                />
+              </li>
+              <li class="form_input_item" style>
+                <input
+                  class="code_input"
                   maxlength="11"
                   placeholder="请输入手机号"
                   type="text"
-                  autocomplete="username"
+                  autocomplete="off"
                   style="font-size: 15px"
                   v-model="phone"
                 />
@@ -30,7 +39,7 @@
               <li class="form_input_item" style>
                 <input
                   class="code_input"
-                  maxlength="11"
+                  maxlength="6"
                   placeholder="请输入验证码"
                   type="text"
                   autocomplete="off"
@@ -96,7 +105,10 @@ export default {
   name: "Register",
   data() {
     return {
-      //收集表单数据 手机号
+      //收集表单数据 
+      //用户名
+      username:"",
+      //手机号
       phone: "",
       //验证码
       code: "",
@@ -106,6 +118,8 @@ export default {
       password1: "",
       //是否同意协议
       agree: true,
+      //种类
+      type: 0,
     };
   },
   methods: {
@@ -114,26 +128,36 @@ export default {
       //验证有手机号存在的情况下
       try {
         //如果获取到验证码
-        const { phone } = this;
-        phone && (await this.$store.dispatch("getCode", phone));
+        const { phone, type } = this;
+        phone && (await this.$store.dispatch("getCode", {phone, type}));
+        // console.log(type);
         //将组件的code属性值变为仓库的验证码[自动填写]
-        this.code = this.$store.state.user.code;
+        console.log(this.$store);
+        this.code = this.$store.state.user.code.code;
       } catch (error) {}
     },
+
     //用户注册
     async userRegister() {
       try {
         //如果成功 路由跳转到登录
-        const { phone, code, password, password1 } = this;
-        phone &&
-          code &&
-          password == password1 &&
-          (await this.$store.dispatch("userRegister", {
-            phone,
-            code,
-            password,
-          }));
-        this.$router.push('login');
+        const { username, phone, code, password, password1 } = this;
+        // (username && phone && code && password == password1) &&
+        //   (await this.$store.dispatch("userRegister", 
+        //             {username, phone, code, password,}));
+        // this.$router.push('login');
+        // alert("注册成功");
+        if(!username)   alert("请输入用户名");
+        else if(!phone)  alert("请输入手机号");
+        else if(!code)  alert("请输入验证码");
+        else if(!password)  alert("请输入密码");
+        else if(!password1)  alert("请确认密码");
+        else{
+          await this.$store.dispatch("userRegister", 
+                    {username, phone, code, password});
+          alert("注册成功");          
+          this.$router.push('login');
+        }
       } catch (error) {
         alert(error.message);
       }

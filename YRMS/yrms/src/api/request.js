@@ -1,4 +1,5 @@
 //对axios进行二次封装
+import store from "@/store";
 import axios from "axios";
 
 //1:利用axios对象的方法create，创造一个axios实例
@@ -12,6 +13,10 @@ const request = axios.create({
 
 //请求拦截器：在发请求之前，请求拦截器可以检测到，可以在请求发出去之前做一些事情
 request.interceptors.request.use((config) => {
+    //需要携带id带给服务器
+    if (store.state.user.id) {
+        config.header.id = store.state.user.id;
+    }
     return config;
 })
 

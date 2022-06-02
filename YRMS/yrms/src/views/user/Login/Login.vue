@@ -91,11 +91,18 @@ export default {
     async userLogin() {
       try {
         const { phone, password } = this;
-        phone &&
-          password &&
-          (await this.$store.dispatch("userLogin", { phone, password }));
-        //跳转到Home首页
-        this.$router.push({name:"home"});
+        if(!phone)  alert("请输入手机号");
+        else if(!password)  alert("请输入密码");
+        else{
+          await this.$store.dispatch("userLogin", { phone, password });
+          alert("登录成功");
+          //获取用户信息
+          this.$store.dispatch("getUserInfo");
+          //跳转到Home首页
+          this.$router.push({name:"home"});
+          //自动刷新
+        this.$router.go(0);
+        }
       } catch (error) {
         alert(error.message);
       }

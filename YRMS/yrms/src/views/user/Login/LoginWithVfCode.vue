@@ -18,6 +18,7 @@
                   type="text"
                   autocomplete="username"
                   style="font-size: 15px"
+                  v-model="phone"
                 />
               </div>
               <div class="form_input_item">
@@ -27,6 +28,7 @@
                   type="text"
                   autocomplete="off"
                   style="float:left"
+                  v-model="code"
                 />
               </div>
             </div>
@@ -44,13 +46,12 @@
               <span class="checkbox"> 7天内免登录</span>
             </div>
             <div class="login_panel_forget_password">
-              <a class="forget_password" href="#">获取验证码</a>
+              <a class="forget_password" href="#" @click="getCode">
+                获取验证码
+              </a>
             </div>
-             <!-- <div class="send_login_message_verify">
-                <em>获取验证码</em>
-              </div> -->
-
-            <div class="login_btn">登录</div>
+             
+            <div class="login_btn" @click="userLoginWithVfCode">登录</div>
             <div class="login_change_type">
               <router-link to="/login">账号密码登录</router-link>
             </div>
@@ -84,6 +85,8 @@ export default {
       phone: "",
       //验证码
       code: "",
+      //种类
+      type: 1,
     };
   },
   methods: {
@@ -92,21 +95,32 @@ export default {
       //验证有手机号存在的情况下
       try {
         //如果获取到验证码
-        const { phone } = this;
-        phone && (await this.$store.dispatch("getCode", phone));
+        const { phone, type } = this;
+        phone && (await this.$store.dispatch("getCode", {phone, type}));
         //将组件的code属性值变为仓库的验证码[自动填写]
-        this.code = this.$store.state.user.code;
+        // console.log(this.$store);
+        // console.log(type);
+        console.log(this.$store.state.user.code.code);
+        this.code = this.$store.state.user.code.code;
       } catch (error) {}
     },
+
     //登录回调函数
     async userLoginWithVfCode() {
       try {
         const { phone, code } = this;
-        phone &&
-          code &&
-          (await this.$store.dispatch("userLoginWithVfCode", { phone, code }));
-        //跳转到Home首页
-        this.$router.push("home");
+        if(!phone)  alert("请输入手机号");
+        else if(!code)  alert("请输入验证码");
+        else{
+          await this.$store.dispatch("userLoginWithVfCode", { phone, code });
+          alert("登录成功");
+          //获取用户信息
+          this.$store.dispatch("getUserInfo");
+          //跳转到Home首页
+          this.$router.push({name:"home"});
+          //自动刷新
+        this.$router.go(0);
+        }
       } catch (error) {
         alert(error.message);
       }

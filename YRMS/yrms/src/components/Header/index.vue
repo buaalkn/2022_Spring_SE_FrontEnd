@@ -10,17 +10,21 @@
       active-text-color="rgb(119, 191, 227)"
       router
     >
-      <template v-for="(item, index) in nav_menu_data">
+      <template v-for="(item, index) in nav_menu_data" >
         <el-menu-item :index="item.path" :key="index" class="el-menu-item">
           {{ item.title }}
         </el-menu-item>
       </template>
       <div class="user_login">
         <!-- 登录状态 -->
-        <div class="login_state">{{ this.login }}</div>
+        <!-- 未登录显示游客 -->
+        <div class="login_state" v-if="!username">{{ this.login }}</div>
+        <!-- 登录显示用户名 -->
+        <div class="login_state" v-else>{{username}}</div>
         <!-- 小图标 -->
         <!-- <i class="el-icon-user"></i> -->
-        <router-link to="/tenantMessage" class="el-icon-user"></router-link>
+        <i v-if="!username" class="el-icon-user" @click="remind"></i>
+        <router-link to="/tenantMessage" v-else class="el-icon-user"></router-link>
       </div>
     </el-menu>
   </div>
@@ -71,7 +75,16 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
+    remind(){
+      alert("请先登录");
+    }
   },
+  computed:{
+    //用户名信息
+    username(){
+      return this.$store.state.user.username;
+    }
+  }
 };
 </script>
 
