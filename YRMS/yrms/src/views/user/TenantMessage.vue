@@ -59,7 +59,7 @@
       </form>
     </div>
     <li style="margin-top: 30px">
-      <a class="logout-btn" v-if="username" @click="logout">退出登录</a>
+      <a class="logout-btn" @click="logout">退出登录</a>
     </li>
   </div>
 </template>

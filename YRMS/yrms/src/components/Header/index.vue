@@ -23,7 +23,8 @@
         <div class="login_state" v-else>{{username}}</div>
         <!-- 小图标 -->
         <!-- <i class="el-icon-user"></i> -->
-        <router-link to="/tenantMessage" class="el-icon-user"></router-link>
+        <i v-if="!username" class="el-icon-user" ></i>
+        <router-link to="/tenantMessage" v-else class="el-icon-user"></router-link>
       </div>
     </el-menu>
   </div>
