@@ -97,11 +97,12 @@ export default {
           await this.$store.dispatch("userLogin", { phone, password });
           alert("登录成功");
           //获取用户信息
+          //console.log(this.$store);
           this.$store.dispatch("getUserInfo");
           //跳转到Home首页
           this.$router.push({name:"home"});
           //自动刷新
-        this.$router.go(0);
+          this.$router.go(0);
         }
       } catch (error) {
         alert(error.message);

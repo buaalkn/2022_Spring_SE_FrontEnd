@@ -83,6 +83,10 @@ export default {
     //用户名信息
     username(){
       return this.$store.state.user.username;
+    },
+    //用户类型
+    usertype(){
+      return this.$store.state.user.usertype;
     }
   }
 };

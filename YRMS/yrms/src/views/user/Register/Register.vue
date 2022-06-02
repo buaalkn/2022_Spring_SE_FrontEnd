@@ -132,7 +132,7 @@ export default {
         phone && (await this.$store.dispatch("getCode", {phone, type}));
         // console.log(type);
         //将组件的code属性值变为仓库的验证码[自动填写]
-        console.log(this.$store);
+        // console.log(this.$store);
         this.code = this.$store.state.user.code.code;
       } catch (error) {}
     },

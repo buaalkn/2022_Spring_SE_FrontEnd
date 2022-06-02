@@ -14,6 +14,7 @@ const state = {
     id: localStorage.getItem('ID'),
     userInfo: {},
     username: localStorage.getItem('USERNAME'),
+    usertype: localStorage.getItem('USERTYPE'),
     // userInfo: localStorage.getItem('USERNAME'),
 };
 const mutations = {
@@ -33,6 +34,7 @@ const mutations = {
         //清除本地存储的数据
         localStorage.removeItem("ID");
         localStorage.removeItem("USERNAME");
+        localStorage.removeItem("USERTYPE");
     }
 };
 const actions = {
@@ -102,6 +104,8 @@ const actions = {
             commit("GETUSERINFO", result.data);
             //持久化存储用户名
             localStorage.setItem("USERNAME", result.data.username);
+            //持久化存储用户类型
+            localStorage.setItem("USERTYPE", result.data.usertype);
             return 'ok';
         } else {
             return Promise.reject(new Error('faile'));
