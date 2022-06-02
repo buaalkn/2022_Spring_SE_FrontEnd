@@ -16,6 +16,7 @@ const actions = {
     //租房详情
     async getRentalDetail({commit},id){
         let result = await reqRentalDetail(id);
+        // console.log(result);
         if(result.status==200){
             commit('GETRENTALDETAIL',result.data);
         }

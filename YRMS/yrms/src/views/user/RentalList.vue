@@ -169,8 +169,8 @@ export default {
         typeName: "", //长/短租
         Num: "", //几人间
         locName: "", //位置
-        priceLow: 0, //最低价
-        priceHigh: 100000, //最高价
+        // priceLow: 0, //最低价
+        // priceHigh: 100000, //最高价
         pageNo: 1, //当前页号
         pageSize: 10, //页大小
       },

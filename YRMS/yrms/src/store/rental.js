@@ -11,7 +11,7 @@ const actions = {
     async getRentalList({commit},params = {}){
         //params形参：是当用户派发action的时候，第二个参数传递过来的，至少是一个空对象
         let result = await reqGetRentalInfo(params);
-        // console.log(result);
+        console.log(result);
         if(result.status == 200){
             commit("GETRENTALLIST",result.data);
         }

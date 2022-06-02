@@ -2,9 +2,9 @@
   <div>
     <div class="add_main">
       <!-- 顶部 -->
-      <div class="main_top">
-        <div class="top_title">发布出租房源</div>
-        <div class="top_sub_title">线下门店·服务青年·全城推广</div>
+      <div class="main_top_add">
+        <div class="top_title_add">发布出租房源</div>
+        <div class="top_sub_title_add">线下门店·服务青年·全城推广</div>
       </div>
       <!-- 填写租房信息 -->
       <div class="main_form">
@@ -175,7 +175,7 @@ export default {
 </script>
 
 <style>
-.main_top {
+.main_top_add {
   padding-top: 20px;
   padding-bottom: 50px;
   padding-top: 50px;
@@ -183,12 +183,12 @@ export default {
   text-align: center;
   background-color: #f5f5f6;
 }
-.top_title {
+.top_title_add {
   font-weight: 700;
   color: #101d37;
   font-size: 33px;
 }
-.top_sub_title {
+.top_sub_title_add {
   margin-top: 15px;
   color: #878787;
   font-size: 16px;
