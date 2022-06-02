@@ -23,7 +23,7 @@
         <div class="login_state" v-else>{{username}}</div>
         <!-- 小图标 -->
         <!-- <i class="el-icon-user"></i> -->
-        <i v-if="!username" class="el-icon-user" ></i>
+        <i v-if="!username" class="el-icon-user" @click="remind"></i>
         <router-link to="/tenantMessage" v-else class="el-icon-user"></router-link>
       </div>
     </el-menu>
@@ -75,6 +75,9 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
+    remind(){
+      alert("请先登录");
+    }
   },
   computed:{
     //用户名信息

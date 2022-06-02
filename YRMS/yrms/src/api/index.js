@@ -52,6 +52,22 @@ export const reqLogout = () => requests({
     method: 'get'
 });
 
+//修改用户名
+//URL:/api/updateName  method:post	data
+export const reqUpdateName = (data) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/updateName`,
+    data,
+    method: 'post'
+})
+
+//修改密码
+//URL:/api/updatepw  method:post	data
+export const reqUpdatePwd = (data) => requests({
+    url: `http://127.0.0.1:4523/mock/1005801/api/updatepw`,
+    data,
+    method: 'post'
+})
+
 
 //获取租房数据 
 //URL:/api/rentalList method:post 参数：需要

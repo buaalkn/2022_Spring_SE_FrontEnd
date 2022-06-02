@@ -4,6 +4,8 @@ import { reqUserLogin } from "@/api";
 import { reqUserLoginWithVfCode } from "@/api";
 import { reqUserInfo } from "@/api";
 import { reqLogout } from "@/api";
+import { reqUpdateName } from "@/api";
+import { reqUpdatePwd } from "@/api";
 
 
 //登录注册模块
@@ -115,6 +117,30 @@ const actions = {
         if (result.status == 200) {
             commit("CLEAR");
             return 'ok';
+        } else {
+            return Promise.reject(new Error('faile'));
+        }
+    },
+
+    //修改用户名
+    async updateName({ commit }, data) {
+        let result = await reqUpdateName(data);
+        //console.log(result);
+
+        if (result.status == 200) {
+            return '修改用户名成功';
+        } else {
+            return Promise.reject(new Error('faile'));
+        }
+    },
+
+    //修改密码
+    async updatePwd({ commit }, data) {
+        let result = await reqUpdatePwd(data);
+        //console.log(result);
+
+        if (result.status == 200) {
+            return '修改密码成功';
         } else {
             return Promise.reject(new Error('faile'));
         }
