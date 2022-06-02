@@ -87,6 +87,8 @@ export default {
       code: "",
       //种类
       type: 1,
+      //用户id
+      id: userid,
     };
   },
   methods: {
@@ -108,14 +110,14 @@ export default {
     //登录回调函数
     async userLoginWithVfCode() {
       try {
-        const { phone, code } = this;
+        const { phone, code, id} = this;
         if(!phone)  alert("请输入手机号");
         else if(!code)  alert("请输入验证码");
         else{
           await this.$store.dispatch("userLoginWithVfCode", { phone, code });
           alert("登录成功");
           //获取用户信息
-          this.$store.dispatch("getUserInfo");
+          this.$store.dispatch("getUserInfo", {id});
           //跳转到Home首页
           this.$router.push({name:"home"});
           //自动刷新
@@ -125,6 +127,13 @@ export default {
         alert(error.message);
       }
     },
+  },
+
+  computed:{
+    //用户id
+    userid(){
+      return this.$store.state.user.userid;
+    }
   },
 };
 </script>

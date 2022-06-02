@@ -38,19 +38,19 @@ export const reqUserLoginWithVfCode = (data) => requests({
 });
 
 //获取用户信息
-//URL:/api/getUserInfo  method:get	data
+//URL:/api/getUserInfo  method:post	data
 export const reqUserInfo = (data) => requests({
-    url: 'http://127.0.0.1:4523/mock/1005801/api/getUserInfo',
+    url: `http://127.0.0.1:4523/mock/1005801/api/getUserInfo`,
     data,
-    method: 'get'
+    method: 'post'
 });
 
 //退出登录
 //URL:/api/logout  method:get	data
-export const reqLogout = () => requests({
-    url: `http://127.0.0.1:4523/mock/1005801/api/logout`,
-    method: 'get'
-});
+// export const reqLogout = () => requests({
+//     url: `http://127.0.0.1:4523/mock/1005801/api/logout`,
+//     method: 'get'
+// });
 
 //修改用户名
 //URL:/api/updateName  method:post	data

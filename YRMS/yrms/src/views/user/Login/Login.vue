@@ -84,13 +84,15 @@ export default {
       phone: "",
       //密码
       password: "",
+      //用户id
+      id: userid, 
     };
   },
   methods: {
     //登录回调函数
     async userLogin() {
       try {
-        const { phone, password } = this;
+        const { phone, password, id } = this;
         if(!phone)  alert("请输入手机号");
         else if(!password)  alert("请输入密码");
         else{
@@ -98,7 +100,7 @@ export default {
           alert("登录成功");
           //获取用户信息
           //console.log(this.$store);
-          this.$store.dispatch("getUserInfo");
+          this.$store.dispatch("getUserInfo", {id});
           //跳转到Home首页
           this.$router.push({name:"home"});
           //自动刷新
@@ -108,6 +110,12 @@ export default {
         alert(error.message);
       }
     },
+  },
+  computed:{
+    //用户id
+    userid(){
+      return this.$store.state.user.userid;
+    }
   },
 };
 </script>

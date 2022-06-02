@@ -115,15 +115,11 @@ const actions = {
     },
 
     //退出登录
-    async userLogout({ commit }) {
-        let result = await reqLogout();
+    userLogout({ commit }) {
+        // let result = await reqLogout();
         //action里面不能操作state，需要提交mutation修改state
-        if (result.status == 200) {
-            commit("CLEAR");
-            return 'ok';
-        } else {
-            return Promise.reject(new Error('faile'));
-        }
+        commit("CLEAR");
+        return 'ok';
     },
 
     //修改用户名
