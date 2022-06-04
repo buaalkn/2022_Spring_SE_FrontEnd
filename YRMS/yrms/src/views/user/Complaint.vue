@@ -45,6 +45,7 @@ export default {
         user_id: 0,
         img: "",
         problem: "",
+        
       },
       iconBase64: "",
     };
